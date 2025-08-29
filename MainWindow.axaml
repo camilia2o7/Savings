@@ -1,0 +1,591 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
+        x:Class="Savings.MainWindow"
+        Title="Savings"
+        Background="#0f0f14"
+        MinWidth="1000"
+		MinHeight="700"
+        WindowStartupLocation="CenterScreen"
+		WindowState="Normal"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="40"
+        CanResize="False">
+	<Window.Styles>
+		<Style Selector="Button.title-button">
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Foreground" Value="#9ca3af"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="Width" Value="46"/>
+			<Setter Property="Height" Value="32"/>
+			<Setter Property="FontSize" Value="10"/>
+			<Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="Cursor" Value="Hand"/>
+		</Style>
+		<Style Selector="Button.title-button:pointerover">
+			<Setter Property="Background" Value="#2a2a3a"/>
+			<Setter Property="Foreground" Value="White"/>
+		</Style>
+		<Style Selector="Button.title-button.close:pointerover">
+			<Setter Property="Background" Value="#dc2626"/>
+			<Setter Property="Foreground" Value="White"/>
+		</Style>
+		<Style Selector="Rectangle.resize-grip">
+			<Setter Property="Fill" Value="Transparent"/>
+			<Setter Property="Width" Value="16"/>
+			<Setter Property="Height" Value="16"/>
+			<Setter Property="Cursor" Value="TopLeftCorner"/>
+			<Setter Property="HorizontalAlignment" Value="Right"/>
+			<Setter Property="VerticalAlignment" Value="Bottom"/>
+			<Setter Property="Margin" Value="0,0,4,4"/>
+		</Style>
+		<Style Selector="Rectangle.separator">
+			<Setter Property="Fill" Value="#374151"/>
+			<Setter Property="Height" Value="1"/>
+			<Setter Property="Margin" Value="0,16,0,16"/>
+		</Style>
+		<Style Selector="Rectangle.vertical-separator">
+			<Setter Property="Fill" Value="#374151"/>
+			<Setter Property="Width" Value="1"/>
+			<Setter Property="Margin" Value="16,0,16,0"/>
+		</Style>
+		<Style Selector="Button.primary">
+			<Setter Property="Background">
+				<Setter.Value>
+					<LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+						<GradientStop Color="#3b82f6" Offset="0"/>
+						<GradientStop Color="#1d4ed8" Offset="1"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontWeight" Value="SemiBold"/>
+			<Setter Property="CornerRadius" Value="8"/>
+			<Setter Property="Padding" Value="20,12"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="Cursor" Value="Hand"/>
+		</Style>
+		<Style Selector="Button.primary:pointerover">
+			<Setter Property="Background">
+				<Setter.Value>
+					<LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+						<GradientStop Color="#2563eb" Offset="0"/>
+						<GradientStop Color="#1e40af" Offset="1"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style Selector="Button.success">
+			<Setter Property="Background">
+				<Setter.Value>
+					<LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+						<GradientStop Color="#10b981" Offset="0"/>
+						<GradientStop Color="#059669" Offset="1"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontWeight" Value="SemiBold"/>
+			<Setter Property="CornerRadius" Value="8"/>
+			<Setter Property="Padding" Value="16,10"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="FontSize" Value="13"/>
+			<Setter Property="Cursor" Value="Hand"/>
+		</Style>
+		<Style Selector="Button.danger">
+			<Setter Property="Background" Value="#dc2626"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="CornerRadius" Value="6"/>
+			<Setter Property="Padding" Value="8,6"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="FontSize" Value="11"/>
+			<Setter Property="Cursor" Value="Hand"/>
+		</Style>
+		<Style Selector="Button.tag-button">
+			<Setter Property="Background" Value="#3b82f6"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="CornerRadius" Value="12"/>
+			<Setter Property="Padding" Value="8,4"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="FontSize" Value="10"/>
+			<Setter Property="FontWeight" Value="Medium"/>
+			<Setter Property="Margin" Value="0,0,4,4"/>
+			<Setter Property="Cursor" Value="Hand"/>
+		</Style>
+		<Style Selector="Button.tag-button:pointerover">
+			<Setter Property="Background" Value="#dc2626"/>
+		</Style>
+		<Style Selector="Button.add-tag">
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Foreground" Value="#6b7280"/>
+			<Setter Property="BorderBrush" Value="#6b7280"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="CornerRadius" Value="12"/>
+			<Setter Property="Padding" Value="0"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+			<Setter Property="Cursor" Value="Hand"/>
+			<Setter Property="Width" Value="28"/>
+			<Setter Property="Height" Value="24"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+		<Style Selector="Button.add-tag:pointerover">
+			<Setter Property="Background" Value="#374151"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="BorderBrush" Value="White"/>
+		</Style>
+		<Style Selector="TextBox.input">
+			<Setter Property="Background" Value="#1f2937"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="BorderBrush" Value="#374151"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="CornerRadius" Value="6"/>
+			<Setter Property="Padding" Value="12,10"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="Margin" Value="0,4,0,8"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+		<Style Selector="TextBox.input:focus">
+			<Setter Property="BorderBrush" Value="#3b82f6"/>
+			<Setter Property="BorderThickness" Value="2"/>
+		</Style>
+		<Style Selector="ComboBox.selector">
+			<Setter Property="Background" Value="#1f2937"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="BorderBrush" Value="#374151"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="CornerRadius" Value="6"/>
+			<Setter Property="Padding" Value="12,8"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+		<Style Selector="Border.card">
+			<Setter Property="Background" Value="#1a1a24"/>
+			<Setter Property="CornerRadius" Value="12"/>
+			<Setter Property="BorderBrush" Value="#2a2a3a"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Padding" Value="24"/>
+			<Setter Property="Margin" Value="8"/>
+		</Style>
+		<Style Selector="Border.goal-card">
+			<Setter Property="Background" Value="#1e293b"/>
+			<Setter Property="CornerRadius" Value="10"/>
+			<Setter Property="BorderBrush" Value="#334155"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Padding" Value="16"/>
+			<Setter Property="Margin" Value="0,6"/>
+			<Setter Property="Cursor" Value="Hand"/>
+		</Style>
+		<Style Selector="Border.goal-card:pointerover">
+			<Setter Property="Background" Value="#2a3f5f"/>
+			<Setter Property="BorderBrush" Value="#3b82f6"/>
+		</Style>
+		<Style Selector="Border.goal-card.selected">
+			<Setter Property="Background" Value="#1e3a8a"/>
+			<Setter Property="BorderBrush" Value="#3b82f6"/>
+			<Setter Property="BorderThickness" Value="2"/>
+		</Style>
+		<Style Selector="TextBlock.title">
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+		</Style>
+		<Style Selector="TextBlock.subtitle">
+			<Setter Property="Foreground" Value="#9ca3af"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="FontWeight" Value="Medium"/>
+		</Style>
+		<Style Selector="TextBlock.label">
+			<Setter Property="Foreground" Value="#d1d5db"/>
+			<Setter Property="FontSize" Value="13"/>
+			<Setter Property="FontWeight" Value="Medium"/>
+			<Setter Property="Margin" Value="0,8,0,4"/>
+		</Style>
+		<Style Selector="TextBlock.amount">
+			<Setter Property="Foreground" Value="#10b981"/>
+			<Setter Property="FontSize" Value="18"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+		</Style>
+		<Style Selector="TextBlock.total">
+			<Setter Property="Foreground" Value="#fbbf24"/>
+			<Setter Property="FontSize" Value="32"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="TextAlignment" Value="Center"/>
+		</Style>
+		<Style Selector="TextBlock.ovtotal">
+			<Setter Property="Foreground" Value="#d1d5db"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="LineHeight" Value="20"/>
+		</Style>
+		<Style Selector="ProgressBar.modern">
+			<Setter Property="Height" Value="8"/>
+			<Setter Property="CornerRadius" Value="4"/>
+			<Setter Property="Background" Value="#374151"/>
+			<Setter Property="Foreground" Value="#3b82f6"/>
+		</Style>
+	</Window.Styles>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<Grid Grid.Row="0"
+			  Background="#1a1a24"
+			  Name="TitleBarGrid">
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+
+			<TextBlock Grid.Column="0"
+					   Text="Savings Tracker"
+					   Foreground="White"
+					   FontSize="14"
+					   FontWeight="SemiBold"
+					   VerticalAlignment="Center"
+					   Margin="16,0,0,0"/>
+
+			<StackPanel Grid.Column="1"
+						Orientation="Horizontal">
+
+				<Button Classes="title-button"
+						Name="MinimizeButton"
+						Content="&#xE921;"
+						ToolTip.Tip="Minimize"/>
+
+				<Button Classes="title-button close"
+						Name="CloseButton"
+						Content="&#xE8BB;"
+						ToolTip.Tip="Close"/>
+
+			</StackPanel>
+		</Grid>
+		<Grid Grid.Row="1"
+			  Margin="16">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<Grid Grid.Row="1"
+				  Margin="0,16,0,0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="400"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Border Grid.Column="0"
+						Classes="card"
+						VerticalAlignment="Top">
+					<ScrollViewer VerticalScrollBarVisibility="Hidden"
+								  HorizontalScrollBarVisibility="Disabled"
+								  MaxHeight="700">
+						<StackPanel>
+						<TextBlock Classes="title"
+								   Text="Create New Goal"/>
+						<Rectangle Classes="separator"/>
+						<TextBlock Classes="label"
+								   Text="What are you saving for?"/>
+						<TextBox Classes="input"
+								 Name="ItemNameTextBox"
+								 Watermark="e.g., Gaming PC, New Car, Vacation"/>
+						<TextBlock Classes="label"
+								   Text="How much is it? ($)"/>
+						<TextBox Classes="input"
+								 Name="TargetAmountTextBox"
+								 Watermark="e.g., 2500.00"/>
+						<TextBlock Classes="label"
+								   Text="Starting Deposit ($)"/>
+						<TextBox Classes="input"
+								 Name="InitialAmountTextBox"
+								 Watermark="e.g., 100.00 (optional)"/>
+						<TextBlock Classes="label"
+								   Text="Tags"/>
+
+							<Grid>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+
+								<TextBox Grid.Row="0"
+										 Classes="input"
+										 Name="TagTextBox"
+										 Watermark="e.g., Vehicle, Bills, Gifts"/>
+
+								<Border Grid.Row="1"
+										Background="#1f2937"
+										BorderBrush="#374151"
+										BorderThickness="1"
+										CornerRadius="6"
+										Margin="0,-8,0,0"
+										IsVisible="False"
+										ZIndex="1000"
+										Name="TagSuggestionsBorder">
+									<StackPanel Name="TagSuggestions"/>
+								</Border>
+							</Grid>
+							
+						<Button Classes="primary"
+								Name="AddSavingsGoalButton"
+								Content="Start Saving"
+								HorizontalAlignment="Stretch"
+								Margin="0,16,0,0"/>
+						<Button Classes="success"
+								Name="AddMoneyButton"
+								Content="Add Money"
+								HorizontalAlignment="Stretch"
+								Margin="0,5,0,0"/>
+							<Button Classes="success"
+									Name="ArchiveButton"
+									Content="View Archived"
+									Foreground="White"
+									Background="#6E6E6E"
+									HorizontalAlignment="Stretch"
+									Margin="0,5,0,0"/>
+
+						<TextBlock Name="ErrorMessageText"
+								   Foreground="#ef4444"
+								   FontSize="12"
+								   Margin="0,8,0,0"
+								   TextWrapping="Wrap"
+								   IsVisible="False"/>
+
+						<StackPanel Name="AddMoneySection"
+									Margin="0,24,0,0"
+									IsVisible="False">
+							<Rectangle Classes="separator"/>
+							<TextBlock Classes="title"
+									   Text="Add Money"
+									   FontSize="18"/>
+							<TextBlock Classes="label"
+									   Text="Select Goal"/>
+
+							<ComboBox Classes="selector"
+									  Name="GoalSelector"
+									  Margin="0,4,0,8"/>
+
+							<TextBlock Classes="label"
+									   Text="Amount to Add ($)"/>
+
+							<TextBox Classes="input"
+									 Name="AddMoneyAmountTextBox"
+									 Watermark="e.g., 50.00"/>
+
+							<Grid Margin="0,8,0,0">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+
+								<Button Grid.Column="0"
+										Classes="success"
+										Name="ConfirmAddMoneyButton"
+										Content="Add Money"
+										HorizontalAlignment="Stretch"
+										Margin="0,0,8,0"/>
+
+								<Button Grid.Column="1"
+										Classes="danger"
+										Name="CancelAddMoneyButton"
+										Content="Cancel"
+										Padding="16,10"/>
+							</Grid>
+						</StackPanel>
+						<StackPanel Name="TagEditorSection"
+									Margin="0,24,0,0"
+									IsVisible="False">
+							<Rectangle Classes="separator"/>
+							<TextBlock Classes="title"
+									   Text="Edit Tags"
+									   FontSize="18"/>
+							<TextBlock Classes="label"
+									   Text="Add New Tag"/>
+							<Grid>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+
+								<TextBox Grid.Row="0"
+										 Classes="input"
+										 Name="NewTagTextBox"
+										 Watermark="Enter tag name"/>
+
+								<Border Grid.Row="1"
+										Background="#1f2937"
+										BorderBrush="#374151"
+										BorderThickness="1"
+										CornerRadius="6"
+										Margin="0,-8,0,0"
+										IsVisible="False"
+										ZIndex="1000"
+										Name="NewTagSuggestionsBorder">
+									<StackPanel Name="NewTagSuggestions"/>
+								</Border>
+							</Grid>
+							<Grid Margin="0,8,0,0">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+								<Button Grid.Column="0"
+										Classes="success"
+										Name="AddTagToGoalButton"
+										Content="Add Tag"
+										HorizontalAlignment="Stretch"
+										Margin="0,0,8,0"/>
+								<Button Grid.Column="1"
+										Classes="danger"
+										Name="CancelTagEditButton"
+										Content="Cancel"
+										Padding="16,10"/>
+							</Grid>
+						</StackPanel>
+							<Rectangle Classes="separator"/>
+						<StackPanel>
+							<TextBlock Classes="title"
+									   Text="Overview"
+									   TextAlignment="Center"
+									   Margin="0,0,0,0"
+									   VerticalAlignment="Bottom"
+									   HorizontalAlignment="Center"/>
+							<Rectangle Classes="separator"/>
+							<StackPanel Name="OverviewPanel" />
+						</StackPanel>
+					</StackPanel>
+				</ScrollViewer>
+				</Border>
+				
+				<Rectangle Grid.Column="1"
+						   Classes="vertical-separator"/>
+
+				<Border Grid.Column="2"
+						Classes="card">
+
+					<DockPanel>
+
+						<Grid DockPanel.Dock="Top"
+							  Margin="0,0,0,16">
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+
+							<StackPanel Grid.Column="0"
+										Orientation="Horizontal"
+										VerticalAlignment="Center">
+
+								<TextBlock Classes="title"
+										   Text="My Goals"
+										   VerticalAlignment="Center"/>
+							</StackPanel>
+							<Grid Grid.Column="0" Margin="0,50,0,0">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+
+								<TextBlock Grid.Column="0"
+										   Classes="subtitle"
+										   Name="TotalGoalsText"
+										   Text="No active goals"
+										   VerticalAlignment="Center"/>
+
+								<TextBlock Grid.Column="1"
+										   Classes="subtitle"
+										   Text="Total Savings"
+										   Margin="20,0,0,0"
+										   VerticalAlignment="Center"
+										   HorizontalAlignment="Right"/>
+
+								<TextBlock Grid.Column="2"
+										   Classes="total"
+										   Name="TotalSavingsText"
+										   Text="$0.00"
+										   FontSize="15"
+										   Margin="5,0,0,0"
+										   VerticalAlignment="Center"
+										   HorizontalAlignment="Right"
+										   TextTrimming="CharacterEllipsis"/>
+							</Grid>
+						</Grid>
+
+						<Rectangle DockPanel.Dock="Top"
+								   Classes="separator"
+								   Margin="0,0,0,16"/>
+
+						<Button DockPanel.Dock="Top"
+								Name="BackToGoalsButton"
+								Content="← Back to Goals"
+								Background="Transparent"
+								Foreground="#C4E8EC"
+								BorderThickness="0"
+								FontSize="12"
+								HorizontalAlignment="Left"
+								Margin="0,0,0,0"
+								IsVisible="False"
+								Cursor="Hand"/>
+						
+						<StackPanel Name="EmptyStatePanel"
+									DockPanel.Dock="Bottom"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Center"
+									IsVisible="True">
+
+							<TextBlock Classes="title"
+									   Text="No Savings Yet"
+									   TextAlignment="Center"
+									   FontSize="20"/>
+
+							<TextBlock Classes="subtitle"
+									   Text="Create your first savings goal to get started!"
+									   TextAlignment="Center"
+									   Margin="0,8"/>
+						</StackPanel>
+						<ScrollViewer Name="SavingsScrollViewer"
+									  VerticalScrollBarVisibility="Hidden"
+									  DockPanel.Dock="Bottom"
+									  IsVisible="False">
+							<StackPanel Name="SavingsGoalsPanel"/>
+						</ScrollViewer>
+					</DockPanel>
+				</Border>
+			</Grid>
+		</Grid>
+		<Rectangle Classes="resize-grip"
+				   Name="ResizeGrip"
+				   Grid.Row="1"
+				   Margin="0,0,10,5"
+				   Stroke="Transparent"
+				   StrokeThickness="0">
+			<Rectangle.Fill>
+				<VisualBrush Stretch="Fill">
+					<VisualBrush.Visual>
+						<TextBlock Text="&#xE740;"
+								   FontFamily="Segoe MDL2 Assets"
+								   FontSize="10"
+								   Foreground="White"
+								   HorizontalAlignment="Center"
+								   VerticalAlignment="Center">
+							<TextBlock.RenderTransform>
+								<RotateTransform Angle="95" CenterX="0.5" CenterY="0.5"/>
+							</TextBlock.RenderTransform>
+						</TextBlock>
+					</VisualBrush.Visual>
+				</VisualBrush>
+			</Rectangle.Fill>
+		</Rectangle>
+	</Grid>
+</Window>
